@@ -26,8 +26,8 @@ jobs:
 
     - name: Run Application
       run: |
-        ./TicTacToe & # Replace with your actual executable name
+        ./Project & # Replace with your actual executable name
 
     - name: Run Tests
       run: |
-        ./TicTacToeTest # Replace with your actual test executable name
+        ./Project # Replace with your actual test executable name
