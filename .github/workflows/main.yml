@@ -14,26 +14,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Qt and Xvfb
+    - name: Install Qt and X11 dependencies
       run: |
         sudo apt update
-        sudo apt install qt5-qmake qtbase5-dev xvfb
+        sudo apt install -y qt5-qmake qtbase5-dev xvfb x11-utils \
+          libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
+          libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0
 
     - name: Build Project
       run: |
-        qmake project.pro  # Adjust if needed
+        qmake
         make
 
-    - name: Start Virtual Display
+    - name: Run Application (Headless)
       run: |
-        Xvfb :99 &  # Create a virtual framebuffer for Qt apps
-        export DISPLAY=:99  # Tell Qt to use this virtual display
+        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./Project &
 
-    - name: Run Application
+    - name: Run Tests (Headless)
       run: |
-        ./Project &  # Replace with the actual executable name from project.pro
-
-    - name: Run Tests
-      run: |
-        chmod +x TicTacToeTest  # Ensure test executable has execute permissions
-        ./TicTacToeTest  # Replace with the actual test executable name
+        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./Project
