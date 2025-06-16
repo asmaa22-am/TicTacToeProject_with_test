@@ -14,20 +14,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Qt
+    - name: Install Qt and Xvfb
       run: |
         sudo apt update
-        sudo apt install qt5-qmake qtbase5-dev
+        sudo apt install qt5-qmake qtbase5-dev xvfb
 
     - name: Build Project
       run: |
-        qmake
+        qmake project.pro  # Adjust if needed
         make
+
+    - name: Start Virtual Display
+      run: |
+        Xvfb :99 &  # Create a virtual framebuffer for Qt apps
+        export DISPLAY=:99  # Tell Qt to use this virtual display
 
     - name: Run Application
       run: |
-        ./Project & # Replace with your actual executable name
+        ./Project &  # Replace with the actual executable name from project.pro
 
     - name: Run Tests
       run: |
-        ./Project # Replace with your actual test executable name
+        chmod +x TicTacToeTest  # Ensure test executable has execute permissions
+        ./TicTacToeTest  # Replace with the actual test executable name
