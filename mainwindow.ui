@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Modern Qt Tic-Tac-Toe Application Stylesheet */
+
+/* Main Window and QStackedWidget Background: bright burble */
+QMainWindow, QStackedWidget {
+    background: #b39ddb;
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* All other widgets default to main background unless overridden */
+QWidget {
+    background: #8b5fbf;
+    color: #ffffff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Login Page Styling */
+QWidget#loginPage {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+/* Input Fields: Always white background, dark text */
+QLineEdit {
+    background: #fff;
+    color: #2d3748;
+    border: 2px solid #d1d9e6;
+    border-radius: 8px;
+    padding: 8px 14px;
+    selection-background-color: rgba(255, 255, 255, 0.3);
+}
+
+QLineEdit:focus {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: #fff; /* Pure white on focus */
+    outline: none;
+}
+
+QLineEdit::placeholder {
+    color: rgba(45, 55, 72, 0.5);
+}
+
+/* Labels */
+QLabel {
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Primary Buttons (Sign In/Sign Up/Play Game/View History) */
+QPushButton#SignIn, QPushButton#SignUp,
+QPushButton#playGameButton, QPushButton#viewHistoryButton {
+    background: #ffe066;
+    color: #8b5fbf;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 28px;
+    font-weight: bold;
+    margin: 6px;
+}
+
+QPushButton#SignIn:hover, QPushButton#SignUp:hover,
+QPushButton#playGameButton:hover, QPushButton#viewHistoryButton:hover {
+    background: #ffef99;
+}
+
+QPushButton#SignIn:pressed, QPushButton#SignUp:pressed,
+QPushButton#playGameButton:pressed, QPushButton#viewHistoryButton:pressed {
+    background: #ffd700;
+}
+
+/* Game Dialog Buttons */
+QPushButton[text=&quot;PvP (Two Players)&quot;] {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #ffecd2, stop: 1 #fcb69f);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: #2d3748;
+}
+QPushButton[text=&quot;PvP (Two Players)&quot;]:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #ff9a9e, stop: 1 #fecfef);
+}
+
+QPushButton[text=&quot;PvAI (Play against AI)&quot;] {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #a8edea, stop: 1 #fed6e3);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: #2d3748;
+}
+QPushButton[text=&quot;PvAI (Play against AI)&quot;]:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #667eea, stop: 1 #764ba2);
+    color: #ffffff;
+}
+
+QPushButton[text=&quot;Replay Game&quot;] {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #fbc2eb, stop: 1 #a6c1ee);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: #2d3748;
+}
+QPushButton[text=&quot;Replay Game&quot;]:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #f093fb, stop: 1 #f5576c);
+    color: #ffffff;
+}
+
+/* Game Board Buttons (Tic-tac-toe cells) */
+QPushButton[objectName^=&quot;gameCell&quot;] {
+    background: #fff;
+    color: #8b5fbf;
+    border: 2px solid #cfcfcf;
+    border-radius: 10px;
+    font-weight: bold;
+}
+QPushButton[objectName^=&quot;gameCell&quot;]:hover {
+    background: #ffe066;
+    color: #5f72bd;
+    transform: scale(1.05);
+}
+QPushButton[objectName^=&quot;gameCell&quot;]:pressed {
+    background: rgba(240, 240, 240, 1);
+}
+
+/* X and O styling for game buttons */
+QPushButton[text=&quot;X&quot;] {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+                stop: 0 #ff6b6b, stop: 1 #ff8e8e) !important;
+    color: #ffffff !important;
+    border: 2px solid #ff5252 !important;
+}
+QPushButton[text=&quot;O&quot;] {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+                stop: 0 #4ecdc4, stop: 1 #44a08d) !important;
+    color: #ffffff !important;
+    border: 2px solid #26d0ce !important;
+}
+
+/* Dialog Windows */
+QDialog {
+    background: #8b5fbf;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    border-radius: 15px;
+}
+
+/* ComboBox */
+QComboBox {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #ffffff;
+}
+QComboBox:hover {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+}
+QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #ffffff;
+    margin-right: 5px;
+}
+QComboBox QAbstractItemView {
+    background: rgba(255, 255, 255, 0.95);
+    color: #2d3748;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    selection-background-color: rgba(102, 126, 234, 0.3);
+}
+
+/* Text Edit (History) */
+QTextEdit {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    color: #2d3748;
+}
+
+/* Scroll Bars */
+QScrollBar:vertical {
+    background: rgba(255, 255, 255, 0.1);
+    width: 12px;
+    border-radius: 6px;
+    margin: 0;
+}
+QScrollBar::handle:vertical {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+}
+QScrollBar::handle:vertical:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Close/Cancel Buttons */
+QPushButton[text=&quot;Close&quot;], QPushButton[text=&quot;Cancel&quot;] {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #ff6b6b, stop: 1 #ff8e8e);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #ffffff;
+}
+QPushButton[text=&quot;Close&quot;]:hover, QPushButton[text=&quot;Cancel&quot;]:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #ff5252, stop: 1 #ff7979);
+}
+
+/* Animation Effects */
+QPushButton {
+    transition: all 0.3s ease;
+}
+QPushButton:hover {
+    transform: translateY(-2px);
+}
+QPushButton:pressed {
+    transform: translateY(0px);
+}
+
+/* Remove focus rectangle for a cleaner look */
+QPushButton:focus { 
+    outline: none; 
+}
+
+/* Frame Styling */
+QFrame {
+    background: transparent;
+    border: none;
+}
+
+/* Input Dialog Styling */
+QInputDialog {
+    background: #8b5fbf;
+    color: #ffffff;
+}
+
+/* Message Box Styling */
+QMessageBox {
+    background: #8b5fbf;
+    color: #ffffff;
+}
+QMessageBox QPushButton {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 #4ecdc4, stop: 1 #44a08d);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: #ffffff;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>40</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Username</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SignIn">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>120</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sign_In</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>70</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>password</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Username">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Password">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>70</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::EchoMode::Password</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SignUp">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>120</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sign_Up</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playGameButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>170</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>playGame</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="viewHistoryButton">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>220</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>viewHistory</string>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>280</y>
+      <width>120</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="page"/>
+    <widget class="QWidget" name="page_2"/>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
