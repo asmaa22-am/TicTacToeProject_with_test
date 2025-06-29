@@ -26,6 +26,8 @@ A feature-rich, cross-platform Tic-Tac-Toe game built with Qt/C++ that includes 
 - **System Resources**: Track memory usage and CPU utilization
 - **Performance Analytics**: Detailed timing statistics for all major operations
 - **Game Statistics**: Win/loss ratios, average game duration, and gameplay metrics
+### 🔄 CI/CD with GitHub Actions
+This project uses GitHub Actions for continuous integration and deployment. Our automated pipeline ensures code quality and cross-platform compatibility.
 
 ## 🛠️ Technical Architecture
 
@@ -75,32 +77,6 @@ A feature-rich, cross-platform Tic-Tac-Toe game built with Qt/C++ that includes 
 - Qt SQL
 - Qt GUI
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd tictactoe-game
-   ```
-
-2. **Build with CMake**
-   ```bash
-   mkdir build
-   cd build
-   cmake ..
-   make
-   ```
-
-   **Or build with qmake**
-   ```bash
-   qmake TicTacToe.pro
-   make
-   ```
-
-3. **Run the application**
-   ```bash
-   ./TicTacToe
-   ```
 
 ## 🎯 How to Use
 
@@ -162,31 +138,7 @@ The application includes comprehensive performance tracking:
 - Resource usage monitoring
 - Performance data export capabilities
 
-## 🗄️ Database Schema
 
-### Users Table
-```sql
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    salt TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-### Game History Table
-```sql
-CREATE TABLE game_history (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL,
-    game_mode TEXT NOT NULL,
-    winner TEXT NOT NULL,
-    moves TEXT NOT NULL,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(username) REFERENCES users(username)
-);
-```
 
 ## 🔧 Configuration
 
@@ -195,54 +147,9 @@ CREATE TABLE game_history (
 - Performance monitoring: Enabled by default
 - Windows-specific features: Automatically detected
 
-### Customization Options
-- Modify AI difficulty by adjusting Minimax depth
-- Customize UI colors and styling
-- Configure performance monitoring intervals
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Database Connection Problems**
-- Ensure write permissions in application directory
-- Check SQLite driver availability
-- Verify database file integrity
-
-**Performance Monitoring (Windows)**
-- Some features require Windows-specific APIs
-- Performance data may be limited on other platforms
-
-**Build Issues**
-- Verify Qt installation and version compatibility
-- Ensure all required Qt modules are installed
-- Check compiler C++17 support
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
-
 ## 🙏 Acknowledgments
 
 - Qt Framework for the excellent GUI toolkit
 - SQLite for lightweight database functionality
 - Minimax algorithm for AI game theory implementation
 
-## 📞 Support
-
-For support, feature requests, or bug reports, please open an issue on the project repository.
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: 2025  
-**Platform**: Cross-platform (Windows, macOS, Linux)  
-**Language**: C++17 with Qt Framework
