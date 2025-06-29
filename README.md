@@ -26,7 +26,8 @@ A feature-rich, cross-platform Tic-Tac-Toe game built with Qt/C++ that includes 
 - **System Resources**: Track memory usage and CPU utilization
 - **Performance Analytics**: Detailed timing statistics for all major operations
 - **Game Statistics**: Win/loss ratios, average game duration, and gameplay metrics
-### 🔄 CI/CD with GitHub Actions
+- 
+###  CI/CD with GitHub Actions
 This project uses GitHub Actions for continuous integration and deployment. Our automated pipeline ensures code quality and cross-platform compatibility.
 
 ## 🛠️ Technical Architecture
@@ -66,17 +67,10 @@ This project uses GitHub Actions for continuous integration and deployment. Our 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Qt 5.12+ or Qt 6.x
-- C++17 compatible compiler
-- SQLite support (included with Qt)
-- CMake or qmake build system
-
-### Dependencies
-- Qt Core
-- Qt Widgets
-- Qt SQL
-- Qt GUI
-
+- Qt 6.x
+- C++ compiler
+- SQLite support
+- qmake build system
 
 ## 🎯 How to Use
 
@@ -147,9 +141,5 @@ The application includes comprehensive performance tracking:
 - Performance monitoring: Enabled by default
 - Windows-specific features: Automatically detected
 
-## 🙏 Acknowledgments
 
-- Qt Framework for the excellent GUI toolkit
-- SQLite for lightweight database functionality
-- Minimax algorithm for AI game theory implementation
 
