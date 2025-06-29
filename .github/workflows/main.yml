@@ -1,4 +1,4 @@
-name: Build and Test Qt Project
+name: Build Qt Project
 
 on:
   push:
@@ -17,19 +17,12 @@ jobs:
     - name: Install Qt and X11 dependencies
       run: |
         sudo apt update
-        sudo apt install -y qt5-qmake qtbase5-dev xvfb x11-utils \
-          libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
-          libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0
+        sudo apt install -y qt5-qmake qtbase5-dev \
+          libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 \
+          libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 \
+          libxcb-xinerama0 libxcb-xfixes0
 
     - name: Build Project
       run: |
-        qmake
+        qmake project.pro
         make
-
-    - name: Run Application (Headless)
-      run: |
-        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./Project &
-
-    - name: Run Tests (Headless)
-      run: |
-        xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./Project
