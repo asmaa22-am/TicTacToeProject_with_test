@@ -1,6 +1,6 @@
 # Advanced Tic-Tac-Toe Game
 
-A feature-rich, cross-platform Tic-Tac-Toe game built with Qt/C++ that includes user authentication, AI gameplay, game history tracking, and comprehensive performance monitoring.
+This Tic Tac Toe application combines classic gameplay with modern functionality. Developed in C++ using the Qt framework, it offers an interactive user experience with features like AI gameplay, secure user authentication, match history, and performance monitoring.
 
 ## 🎮 Features
 
